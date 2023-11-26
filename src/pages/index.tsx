@@ -1,3 +1,7 @@
 export default function Home() {
-  return <main>Algorand Code Challenge</main>;
+  return (
+    <main>
+      <h1>Algorand Code Challenge</h1>
+    </main>
+  );
 }
