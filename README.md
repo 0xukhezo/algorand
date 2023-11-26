@@ -1,1 +1,1 @@
-# algorand
+Algorand Code Challenge
