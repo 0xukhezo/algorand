@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { addressType } from "@/types/types";
-import { getAddresses } from "@/pages/api/address";
+import getAddresses from "@/pages/api/getAddresses";
 
 export default function useAddresses() {
   const [addresses, setAddresses] = useState<addressType[] | null>(null);
@@ -12,13 +12,19 @@ export default function useAddresses() {
       try {
         setIsLoading(true);
 
-        const { addresses, error } = await getAddresses();
+        const response = await fetch("/api/getAddresses", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-        if (error) {
-          setError(error.message);
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(`Error saiving address: ${errorMessage}`);
         }
-
-        setAddresses(addresses as addressType[]);
+        console.log(await response.json(), "get");
+        // setAddresses(addresses as addressType[]);
         setError(null);
       } finally {
         setIsLoading(false);

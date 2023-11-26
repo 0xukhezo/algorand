@@ -15,6 +15,26 @@ export default function AddressAggregator() {
     setAddress(inputAddress);
   };
 
+  const postData = async () => {
+    try {
+      const response = await fetch("/api/postAddress", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ address: address }),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Error saiving address: ${errorMessage}`);
+      }
+      setAddress("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <span className="mr-[12px]">Algorand address</span>
@@ -39,7 +59,7 @@ export default function AddressAggregator() {
           !isValid || !address ? "opacity-50" : ""
         }`}
         disabled={!isValid || !address}
-        onClick={() => console.log("Button clicked")}
+        onClick={() => postData()}
       >
         Add address
       </button>
