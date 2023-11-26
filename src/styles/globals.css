@@ -2,4 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes colorChange {
+    0%, 100% {
+        background-color: #b9fe9e;
+    }
+    50% {
+        background-color: #5aaf39;
+    }
+}
 
+.spinner {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+  
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #b9fe9e;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  

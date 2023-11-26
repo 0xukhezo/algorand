@@ -1,4 +1,5 @@
-import AddressCard from "@/components/AddressCard";
+import AddressCard from "@/components/Cards/AddressCard";
+import Loader from "@/components/Loader/Loader";
 import { addressType } from "@/types/types";
 import useAddresses from "../hooks/useAddresses";
 
@@ -10,7 +11,7 @@ export default function Home() {
       <h1>Algorand Code Challenge</h1>
       <h2>All addresses in Watcher</h2>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : !error ? (
         <div>
           {addresses?.map((address: addressType) => {
