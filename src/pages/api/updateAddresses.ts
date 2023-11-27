@@ -9,7 +9,7 @@ export default async function updateAddresses(
   if (req.method === "POST") {
     try {
       const { addresses } = req.body;
-      console.log(addresses);
+
       for (const addressRow of addresses) {
         const getInfo = {
           method: "GET",

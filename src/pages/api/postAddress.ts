@@ -11,6 +11,15 @@ export default async function postAddress(
     try {
       const { address } = req.body;
 
+      const regex = /^[A-Z0-9]{58}$/;
+
+      if (!regex.test(address)) {
+        res
+          .status(400)
+          .json({ message: "Address invalid, is not Algorand account" });
+        return;
+      }
+
       const getInfo = {
         method: "GET",
         body: {
