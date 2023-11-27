@@ -9,7 +9,7 @@ export default async function postAddress(
 ) {
   if (req.method === "POST") {
     try {
-      const { address } = req.body;
+      const { address, refreshAddresses } = req.body;
 
       const getInfo = {
         method: "GET",
@@ -20,7 +20,7 @@ export default async function postAddress(
 
       const { algorandData }: any = await getAlgorandInfo(getInfo, res);
       const existingAddressData = await getAddressByAddress(getInfo, res);
-      console.log(existingAddressData, algorandData);
+
       if (
         existingAddressData &&
         existingAddressData.data === null &&
@@ -48,12 +48,14 @@ export default async function postAddress(
         ]);
         res.status(200).json({ message: "Address saved" });
       } else {
-        res.status(400).json({ error: "Address in the list" });
+        res.status(400).json({ message: "Address in the list" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Error 500" });
+      res.status(500).json({
+        message: "Error listing the account in the watcher list",
+      });
     }
   } else {
-    res.status(405).json({ error: "Metod not allowed" });
+    res.status(405).json({ message: "Metod not allowed", data: {} });
   }
 }

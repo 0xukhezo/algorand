@@ -8,31 +8,37 @@ export default function useAddresses() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchAddresses = async () => {
-      try {
-        setIsLoading(true);
-        const req = { method: "GET" } as NextApiRequest;
-        const res = {
-          status: (statusCode: number) => ({
-            json: (data: any) => {
-              if (statusCode === 200) {
-                setAddresses(data.data);
-              } else {
-                setError(data.error || "Error 500");
-              }
-            },
-          }),
-        } as NextApiResponse;
-        await getAddresses(req, res);
-        setError(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchAddresses = async () => {
+    try {
+      setIsLoading(true);
+      const req = { method: "GET" } as NextApiRequest;
+      const res = {
+        status: (statusCode: number) => ({
+          json: (data: any) => {
+            if (statusCode === 200) {
+              console.log(data);
+              setAddresses(data.data);
+            } else {
+              setError(data.error || "Error 500");
+            }
+          },
+        }),
+      } as NextApiResponse;
+      await getAddresses(req, res);
+      setError(null);
+      setIsLoading(false);
+    } catch (error: any) {
+      setError(error);
+    }
+  };
 
+  useEffect(() => {
     fetchAddresses();
   }, []);
 
-  return { addresses, error, isLoading };
+  const refreshAddresses = () => {
+    fetchAddresses();
+  };
+
+  return { addresses, error, isLoading, refreshAddresses };
 }

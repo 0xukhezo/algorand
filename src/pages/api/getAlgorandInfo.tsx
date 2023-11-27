@@ -12,12 +12,16 @@ export default async function getAlgorandInfo(
         `https://mainnet-api.algonode.cloud/v2/accounts/${address}`
       );
       const algorandData = algorandResponse.data;
-      res.status(200).json({ message: "Algorand data fetched" });
+      res
+        .status(200)
+        .json({ message: "Algorand data fetched", data: { algorandData } });
       return { algorandData };
     } catch (error) {
-      res.status(400).json({ error: "Error fetching Algorand Account info" });
+      res
+        .status(400)
+        .json({ message: "Error fetching Algorand Account info", data: {} });
     }
   } else {
-    res.status(405).json({ error: "Metod not allowed" });
+    res.status(405).json({ message: "Metod not allowed", data: {} });
   }
 }

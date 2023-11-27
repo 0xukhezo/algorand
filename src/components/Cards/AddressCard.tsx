@@ -12,7 +12,7 @@ export default function AddressCard({ addressInfo }: AddressCardProps) {
       <main className="grid grid-cols-4 text-center py-4 border-b-1 hover:bg-gray-300 hover:text-white">
         <div>{addressInfo.id}</div>
         <div className="col-span-2">{addressInfo.address}</div>
-        <div>{addressInfo.amount}</div>
+        <div>{addressInfo.amount / 1000000}</div>
       </main>{" "}
     </Link>
   );

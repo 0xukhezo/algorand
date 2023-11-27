@@ -3,7 +3,13 @@ import { accountType } from "@/types/types";
 import { NextApiRequest, NextApiResponse } from "next";
 import React, { useEffect, useState } from "react";
 
-export default function AddressAggregator() {
+type AddressAggregatorProps = {
+  refreshAddresses: () => void;
+};
+
+export default function AddressAggregator({
+  refreshAddresses,
+}: AddressAggregatorProps) {
   const [newAddress, setNewAddress] = useState<string | undefined>(undefined);
   const [isValid, setIsValid] = useState<boolean>(true);
   const [address, setAddress] = useState<accountType | null>(null);
@@ -28,14 +34,20 @@ export default function AddressAggregator() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ address: newAddress }),
+        body: JSON.stringify({
+          address: newAddress,
+        }),
       });
 
       if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(`Error saiving address: ${errorMessage}`);
       }
+
       setNewAddress("");
+      setTimeout(() => {
+        refreshAddresses();
+      }, 1000);
     } catch (error) {
       console.error(error);
     }

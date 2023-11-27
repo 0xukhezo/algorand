@@ -16,12 +16,14 @@ export default async function getAddressByAddress(
         .eq("address", address)
         .single();
 
-      res.status(200).json({ data: data });
+      res
+        .status(200)
+        .json({ message: "Address founded in watcher list", data: data });
       return { data, error };
     } catch (error) {
-      res.status(500).json({ error: "Error 500" });
+      res.status(500).json({ message: "Error 500", data: {} });
     }
   } else {
-    res.status(405).json({ error: "Metod not allowed" });
+    res.status(405).json({ message: "Metod not allowed", data: {} });
   }
 }
