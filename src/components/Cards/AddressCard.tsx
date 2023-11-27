@@ -1,9 +1,9 @@
-import { addressType } from "@/types/types";
+import { accountType } from "@/types/types";
 import Link from "next/link";
 import React from "react";
 
 type AddressCardProps = {
-  addressInfo: addressType;
+  addressInfo: accountType;
 };
 
 export default function AddressCard({ addressInfo }: AddressCardProps) {
@@ -12,7 +12,7 @@ export default function AddressCard({ addressInfo }: AddressCardProps) {
       <main className="grid grid-cols-4 text-center py-4 border-b-1 hover:bg-gray-300 hover:text-white">
         <div>{addressInfo.id}</div>
         <div className="col-span-2">{addressInfo.address}</div>
-        <div>{addressInfo.balance}</div>
+        <div>{addressInfo.amount}</div>
       </main>{" "}
     </Link>
   );

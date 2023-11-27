@@ -1,12 +1,12 @@
 import getAddressByAddress from "@/pages/api/getAddressByAddress";
-import { addressType } from "@/types/types";
+import { accountType } from "@/types/types";
 import { NextApiRequest, NextApiResponse } from "next";
 import React, { useEffect, useState } from "react";
 
 export default function AddressAggregator() {
   const [newAddress, setNewAddress] = useState<string | undefined>(undefined);
   const [isValid, setIsValid] = useState<boolean>(true);
-  const [address, setAddress] = useState<addressType[] | null>(null);
+  const [address, setAddress] = useState<accountType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

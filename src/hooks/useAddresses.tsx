@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { addressType } from "@/types/types";
+import { accountType } from "@/types/types";
 import { NextApiRequest, NextApiResponse } from "next";
 import getAddresses from "@/pages/api/getAddresses";
 
 export default function useAddresses() {
-  const [addresses, setAddresses] = useState<addressType[] | null>(null);
+  const [addresses, setAddresses] = useState<accountType[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../server/supabase-client";
+import getAddresses from "./getAddresses";
 
 export default async function getAddressByAddress(
   req: NextApiRequest,
@@ -8,17 +9,13 @@ export default async function getAddressByAddress(
   if (req.method === "GET") {
     try {
       const { address } = req.body;
+
       let { data, error } = await supabase
         .from("Addresses")
         .select("*")
         .eq("address", address)
         .single();
-      if (error) {
-        res
-          .status(406)
-          .json({ error: "The result contains 0 rows", data: null });
-        return;
-      }
+
       res.status(200).json({ data: data });
       return { data, error };
     } catch (error) {

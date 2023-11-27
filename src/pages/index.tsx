@@ -1,7 +1,7 @@
 import AddressCard from "@/components/Cards/AddressCard";
 import AddressAggregator from "@/components/AddressAggregator/AddressAggregator";
 import Loader from "@/components/Loader/Loader";
-import { addressType } from "@/types/types";
+import { accountType } from "@/types/types";
 import useAddresses from "../hooks/useAddresses";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
             <div>Balance</div>
           </section>
 
-          {addresses?.map((address: addressType) => {
+          {addresses?.map((address: accountType) => {
             return <AddressCard addressInfo={address} key={address.id} />;
           })}
         </div>

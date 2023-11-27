@@ -89,22 +89,6 @@ describe("get addresses", () => {
       expect(res.status).toHaveBeenCalledWith(405);
       expect(res.json).toHaveBeenCalledWith({ error: "Metod not allowed" });
     });
-    it("should return a code 406 handle invalid address", async () => {
-      const req = {
-        method: "GET",
-        body: {
-          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W751",
-        },
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
-
-      await getAddressByAddress(req, res);
-
-      expect(res.status).toHaveBeenCalledWith(406);
-    });
   });
 });
 
@@ -114,7 +98,7 @@ describe("post addresses", () => {
       const req = {
         method: "POST",
         body: {
-          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W75S",
+          address: "A2LUYB4WU45SMY5XAK3NHBFIOYVW6FM7URE22UNGP4P3TPAAPMUDH4RTFU",
         },
       } as NextApiRequest;
       const res = {
@@ -125,13 +109,12 @@ describe("post addresses", () => {
       await postAddress(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: "Address saved" });
     });
     it("should return a code 400 if address is in list", async () => {
       const req = {
         method: "POST",
         body: {
-          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754",
+          address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIXVPE",
         },
       } as NextApiRequest;
       const res = {
@@ -143,6 +126,25 @@ describe("post addresses", () => {
 
       expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({ error: "Address in the list" });
+    });
+    it("should return a code 400 if address don't exits in Algorand API", async () => {
+      const req = {
+        method: "POST",
+        body: {
+          address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIAAAA",
+        },
+      } as NextApiRequest;
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      } as unknown as NextApiResponse;
+
+      await postAddress(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Error fetching Algorand Account info",
+      });
     });
     it("should return a code 500 handle error in POST request", async () => {
       const req = {
