@@ -10,17 +10,24 @@ export default function Home() {
   return (
     <main>
       <h1>Algorand Code Challenge</h1>
-      <h2>All addresses in Watcher</h2>
-      <AddressAggregator />
+
       {isLoading ? (
         <Loader />
       ) : !error ? (
-        <div className="mx-20">
+        <div className="mx-20 text-center">
+          <h2 className="my-6 text-2xl font-semibold">
+            Agregate an address to watcher
+          </h2>
+          <AddressAggregator />
+          <h2 className="my-6 text-2xl font-semibold">
+            All addresses in Watcher
+          </h2>
           <section className="grid grid-cols-4 text-center">
             <div></div>
             <div className="col-span-2">Address</div>
             <div>Balance</div>
           </section>
+
           {addresses?.map((address: addressType) => {
             return <AddressCard addressInfo={address} key={address.id} />;
           })}

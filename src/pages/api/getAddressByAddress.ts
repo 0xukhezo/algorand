@@ -13,7 +13,12 @@ export default async function getAddressByAddress(
         .select("*")
         .eq("address", address)
         .single();
-
+      if (error) {
+        res
+          .status(406)
+          .json({ error: "The result contains 0 rows", data: null });
+        return;
+      }
       res.status(200).json({ data: data });
       return { data, error };
     } catch (error) {

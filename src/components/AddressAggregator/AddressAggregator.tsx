@@ -77,29 +77,31 @@ export default function AddressAggregator() {
   }, [newAddress]);
 
   return (
-    <div>
-      <span className="mr-[12px]">Algorand address</span>
-      <input
-        value={newAddress || ""}
-        onChange={(e) => handleAddress(e.target.value)}
-        type="text"
-        name="fundName"
-        id="fundName"
-        className={`shadow-input rounded-lg w-[650px] h-[40px] px-5 outline-none border-2 ${
-          isValid ? "border-black" : "border-red-500"
-        }`}
-        placeholder="QUBJYH3..."
-      />
-      {!isValid && (
-        <p className="text-red-500 text-sm mt-1">
-          Address not valid. Please enter a valid Algorand address.
-        </p>
-      )}
-      {address && (
-        <p className="text-red-500 text-sm mt-1">
-          Address in the list. Enter other address
-        </p>
-      )}
+    <div className="flex justify-around">
+      <div>
+        <input
+          value={newAddress || ""}
+          onChange={(e) => handleAddress(e.target.value)}
+          type="text"
+          name="fundName"
+          id="fundName"
+          className={`shadow-input rounded-lg w-[650px] h-[40px] px-5 outline-none border-2 ${
+            isValid && address === null ? "border-black" : "border-red-500"
+          }`}
+          placeholder="QUBJYH3..."
+        />
+        {!isValid && address === null && (
+          <p className="text-red-500 text-sm mt-1">
+            Address not valid. Please enter a valid Algorand address.
+          </p>
+        )}
+        {address && (
+          <p className="text-red-500 text-sm mt-1">
+            Address in the list. Enter other address
+          </p>
+        )}
+      </div>
+
       {error ? (
         <p className="text-red-500 text-sm mt-1">
           Error in the server. Try later

@@ -27,7 +27,6 @@ describe("get addresses", () => {
 
       expect(res.status).toHaveBeenCalledWith(200);
     });
-
     it("should return a code 405 handle invalid method", async () => {
       const req = {
         method: "POST",
@@ -89,6 +88,22 @@ describe("get addresses", () => {
 
       expect(res.status).toHaveBeenCalledWith(405);
       expect(res.json).toHaveBeenCalledWith({ error: "Metod not allowed" });
+    });
+    it("should return a code 406 handle invalid address", async () => {
+      const req = {
+        method: "GET",
+        body: {
+          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W751",
+        },
+      } as NextApiRequest;
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      } as unknown as NextApiResponse;
+
+      await getAddressByAddress(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(406);
     });
   });
 });
