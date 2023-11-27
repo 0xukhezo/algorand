@@ -15,7 +15,12 @@ export default function Home() {
       {isLoading ? (
         <Loader />
       ) : !error ? (
-        <div>
+        <div className="mx-20">
+          <section className="grid grid-cols-4 text-center">
+            <div></div>
+            <div className="col-span-2">Address</div>
+            <div>Balance</div>
+          </section>
           {addresses?.map((address: addressType) => {
             return <AddressCard addressInfo={address} key={address.id} />;
           })}

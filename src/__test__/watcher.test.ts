@@ -26,7 +26,6 @@ describe("get addresses", () => {
       await getAddresses(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: "Addresses fetched" });
     });
 
     it("should return a code 405 handle invalid method", async () => {
@@ -63,7 +62,6 @@ describe("get addresses", () => {
       await getAddressByAddress(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: "Address fetched" });
     });
     it("should return a code 500 handle error in GET request", async () => {
       const req = {

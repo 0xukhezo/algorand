@@ -14,7 +14,7 @@ export default async function getAddressByAddress(
         .eq("address", address)
         .single();
 
-      res.status(200).json({ message: "Address fetched" });
+      res.status(200).json({ data: data });
       return { data, error };
     } catch (error) {
       res.status(500).json({ error: "Error 500" });

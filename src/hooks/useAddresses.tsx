@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { addressType } from "@/types/types";
+import { NextApiRequest, NextApiResponse } from "next";
 import getAddresses from "@/pages/api/getAddresses";
 
 export default function useAddresses() {
@@ -11,20 +12,19 @@ export default function useAddresses() {
     const fetchAddresses = async () => {
       try {
         setIsLoading(true);
-
-        const response = await fetch("/api/getAddresses", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          const errorMessage = await response.text();
-          throw new Error(`Error saiving address: ${errorMessage}`);
-        }
-        console.log(await response.json(), "get");
-        // setAddresses(addresses as addressType[]);
+        const req = { method: "GET" } as NextApiRequest;
+        const res = {
+          status: (statusCode: number) => ({
+            json: (data: any) => {
+              if (statusCode === 200) {
+                setAddresses(data.data);
+              } else {
+                setError(data.error || "Error 500");
+              }
+            },
+          }),
+        } as NextApiResponse;
+        await getAddresses(req, res);
         setError(null);
       } finally {
         setIsLoading(false);

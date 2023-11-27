@@ -7,9 +7,10 @@ export default async function getAddresses(
 ) {
   if (req.method === "GET") {
     try {
-      await supabase.from("Addresses").select("*");
+      const { data } = await supabase.from("Addresses").select("*");
 
-      res.status(200).json({ message: "Addresses fetched" });
+      res.status(200).json({ data: data });
+      return { data };
     } catch (error) {
       res.status(500).json({ error: "Error 500" });
     }

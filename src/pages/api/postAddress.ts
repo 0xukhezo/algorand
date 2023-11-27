@@ -22,7 +22,6 @@ export default async function postAddress(
         res.status(400).json({ error: "Address in the list" });
       } else {
         await supabase.from("Addresses").insert([{ address, balance: 0 }]);
-
         res.status(200).json({ message: "Address saved" });
       }
     } catch (error) {
