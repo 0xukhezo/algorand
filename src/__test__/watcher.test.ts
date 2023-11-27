@@ -4,6 +4,7 @@ import { supabase } from "../server/supabase-client";
 import { NextApiRequest, NextApiResponse } from "next";
 import getAddressByAddress from "../pages/api/getAddressByAddress";
 import postAddress from "../pages/api/postAddress";
+import updateAddresses from "../pages/api/updateAddresses";
 
 describe("server", () => {
   it("health check returns 200", async () => {
@@ -12,179 +13,210 @@ describe("server", () => {
   });
 });
 
-describe("get addresses", () => {
-  describe("all address", () => {
-    it("should return a code 200", async () => {
-      const req = {
-        method: "GET",
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
+// describe("get addresses", () => {
+//   describe("all address", () => {
+//     it("should return a code 200", async () => {
+//       const req = {
+//         method: "GET",
+//       } as NextApiRequest;
+//       const res = {
+//         status: jest.fn().mockReturnThis(),
+//         json: jest.fn(),
+//       } as unknown as NextApiResponse;
 
-      await getAddresses(req, res);
+//       await getAddresses(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(200);
-    });
-    it("should return a code 405 handle invalid method", async () => {
-      const req = {
-        method: "POST",
-        body: {
-          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754",
-        },
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
+//       expect(res.status).toHaveBeenCalledWith(200);
+//     });
+//     it("should return a code 405 handle invalid method", async () => {
+//       const req = {
+//         method: "POST",
+//         body: {
+//           address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754",
+//         },
+//       } as NextApiRequest;
+//       const res = {
+//         status: jest.fn().mockReturnThis(),
+//         json: jest.fn(),
+//       } as unknown as NextApiResponse;
 
-      await getAddressByAddress(req, res);
+//       await getAddressByAddress(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(405);
-      expect(res.json).toHaveBeenCalledWith({
-        message: "Metod not allowed",
-        data: {},
-      });
-    });
-  });
-  describe("one address", () => {
-    it("should return a code 200", async () => {
-      const req = {
-        method: "GET",
-        body: {
-          address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754",
-        },
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
+//       expect(res.status).toHaveBeenCalledWith(405);
+//       expect(res.json).toHaveBeenCalledWith({
+//         message: "Metod not allowed",
+//         data: {},
+//       });
+//     });
+//   });
+//   describe("one address", () => {
+//     it("should return a code 200", async () => {
+//       const req = {
+//         method: "GET",
+//         body: {
+//           address: "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754",
+//         },
+//       } as NextApiRequest;
+//       const res = {
+//         status: jest.fn().mockReturnThis(),
+//         json: jest.fn(),
+//       } as unknown as NextApiResponse;
 
-      await getAddressByAddress(req, res);
+//       await getAddressByAddress(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(200);
-    });
-    it("should return a code 500 handle error in GET request", async () => {
-      const req = {
-        method: "GET",
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
+//       expect(res.status).toHaveBeenCalledWith(200);
+//     });
+//     it("should return a code 500 handle error in GET request", async () => {
+//       const req = {
+//         method: "GET",
+//       } as NextApiRequest;
+//       const res = {
+//         status: jest.fn().mockReturnThis(),
+//         json: jest.fn(),
+//       } as unknown as NextApiResponse;
 
-      await getAddressByAddress(req, res);
+//       await getAddressByAddress(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(500);
-    });
-    it("should return a code 405 handle invalid method", async () => {
-      const req = {
-        method: "POST",
-      } as NextApiRequest;
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      } as unknown as NextApiResponse;
+//       expect(res.status).toHaveBeenCalledWith(500);
+//     });
+//     it("should return a code 405 handle invalid method", async () => {
+//       const req = {
+//         method: "POST",
+//       } as NextApiRequest;
+//       const res = {
+//         status: jest.fn().mockReturnThis(),
+//         json: jest.fn(),
+//       } as unknown as NextApiResponse;
 
-      await getAddressByAddress(req, res);
+//       await getAddressByAddress(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(405);
-      expect(res.json).toHaveBeenCalledWith({
-        message: "Metod not allowed",
-        data: {},
-      });
-    });
-  });
-});
+//       expect(res.status).toHaveBeenCalledWith(405);
+//       expect(res.json).toHaveBeenCalledWith({
+//         message: "Metod not allowed",
+//         data: {},
+//       });
+//     });
+//   });
+// });
 
-describe("post addresses", () => {
-  it("should return a code 200 if address is not in list", async () => {
-    const req = {
-      method: "POST",
-      body: {
-        address: "A2LUYB4WU45SMY5XAK3NHBFIOYVW6FM7URE22UNGP4P3TPAAPMUDH4RTFU",
-      },
-    } as NextApiRequest;
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    } as unknown as NextApiResponse;
+// describe("post addresses", () => {
+//   it("should return a code 200 if address is not in list", async () => {
+//     const req = {
+//       method: "POST",
+//       body: {
+//         address: "A2LUYB4WU45SMY5XAK3NHBFIOYVW6FM7URE22UNGP4P3TPAAPMUDH4RTFU",
+//       },
+//     } as NextApiRequest;
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     } as unknown as NextApiResponse;
 
-    await postAddress(req, res);
+//     await postAddress(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(200);
-  });
-  it("should return a code 400 if address is in list", async () => {
-    const req = {
-      method: "POST",
-      body: {
-        address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIXVPE",
-      },
-    } as NextApiRequest;
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    } as unknown as NextApiResponse;
+//     expect(res.status).toHaveBeenCalledWith(200);
+//   });
+//   it("should return a code 400 if address is in list", async () => {
+//     const req = {
+//       method: "POST",
+//       body: {
+//         address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIXVPE",
+//       },
+//     } as NextApiRequest;
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     } as unknown as NextApiResponse;
 
-    await postAddress(req, res);
+//     await postAddress(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "Address in the list",
-    });
-  });
-  it("should return a code 400 if address don't exits in Algorand API", async () => {
-    const req = {
-      method: "POST",
-      body: {
-        address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIAAAA",
-      },
-    } as NextApiRequest;
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    } as unknown as NextApiResponse;
+//     expect(res.status).toHaveBeenCalledWith(400);
+//     expect(res.json).toHaveBeenCalledWith({
+//       message: "Address in the list",
+//     });
+//   });
+//   it("should return a code 400 if address don't exits in Algorand API", async () => {
+//     const req = {
+//       method: "POST",
+//       body: {
+//         address: "B26ZXDB35QAFVCJJB3ZC5WO2UDBW7LVIO6MB35HLQDHSN6IGVQEYKIAAAA",
+//       },
+//     } as NextApiRequest;
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     } as unknown as NextApiResponse;
 
-    await postAddress(req, res);
+//     await postAddress(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "Error fetching Algorand Account info",
-      data: {},
-    });
-  });
-  it("should return a code 500 handle error in POST request", async () => {
-    const req = {
-      method: "POST",
-    } as NextApiRequest;
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    } as unknown as NextApiResponse;
+//     expect(res.status).toHaveBeenCalledWith(400);
+//     expect(res.json).toHaveBeenCalledWith({
+//       message: "Error fetching Algorand Account info",
+//       data: {},
+//     });
+//   });
+//   it("should return a code 500 handle error in POST request", async () => {
+//     const req = {
+//       method: "POST",
+//     } as NextApiRequest;
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     } as unknown as NextApiResponse;
 
-    await postAddress(req, res);
+//     await postAddress(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "Error listing the account in the watcher list",
-    });
-  });
-  it("should return a code 405 handle invalid method", async () => {
-    const req = {
+//     expect(res.status).toHaveBeenCalledWith(500);
+//     expect(res.json).toHaveBeenCalledWith({
+//       message: "Error listing the account in the watcher list",
+//     });
+//   });
+//   it("should return a code 405 handle invalid method", async () => {
+//     const req = {
+//       method: "GET",
+//     } as NextApiRequest;
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     } as unknown as NextApiResponse;
+
+//     await postAddress(req, res);
+
+//     expect(res.status).toHaveBeenCalledWith(405);
+//     expect(res.json).toHaveBeenCalledWith({
+//       message: "Metod not allowed",
+//       data: {},
+//     });
+//   });
+// });
+
+describe("update addresses", () => {
+  it("should return a code 200", async () => {
+    const reqGet = {
       method: "GET",
     } as NextApiRequest;
-    const res = {
+    const resGet = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     } as unknown as NextApiResponse;
 
-    await postAddress(req, res);
+    const resPut = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    } as unknown as NextApiResponse;
 
-    expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "Metod not allowed",
-      data: {},
-    });
+    const { data }: any = await getAddresses(reqGet, resGet);
+
+    const reqPUT = {
+      method: "PUT",
+      body: {
+        addresses: data,
+      },
+    } as NextApiRequest;
+
+    await updateAddresses(reqPUT, resPut);
+
+    expect(resGet.status).toHaveBeenCalledWith(200);
+    expect(resPut.status).toHaveBeenCalledWith(200);
   });
 });

@@ -9,7 +9,7 @@ export default async function postAddress(
 ) {
   if (req.method === "POST") {
     try {
-      const { address, refreshAddresses } = req.body;
+      const { address } = req.body;
 
       const getInfo = {
         method: "GET",

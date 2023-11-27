@@ -16,7 +16,6 @@ export default function useAddresses() {
         status: (statusCode: number) => ({
           json: (data: any) => {
             if (statusCode === 200) {
-              console.log(data);
               setAddresses(data.data);
             } else {
               setError(data.error || "Error 500");
