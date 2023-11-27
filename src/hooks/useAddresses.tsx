@@ -5,8 +5,10 @@ import getAddresses from "@/pages/api/getAddresses";
 
 export default function useAddresses() {
   const [addresses, setAddresses] = useState<accountType[] | null>(null);
+  const [prevAddresses, setPrevAddresses] = useState<accountType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [changes, setChanges] = useState<any>([]);
 
   const fetchAddresses = async () => {
     try {
@@ -33,11 +35,41 @@ export default function useAddresses() {
 
   useEffect(() => {
     fetchAddresses();
+    const intervalId = setInterval(fetchAddresses, 12000);
+    return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    if (addresses && addresses?.length > 0) {
+      setPrevAddresses(addresses);
+      const notificationsChanges = addresses
+        .map((account: any, index: number) => {
+          const addressData = prevAddresses && prevAddresses[index];
+          if (addressData) {
+            return {
+              address: account.address,
+              amount: (account.amount - addressData.amount) / 1000000,
+            };
+          }
+          return null;
+        })
+        .filter((result: any) => result !== null) as Array<{
+        address: string;
+        amount: number;
+      }>;
+      const notificationsfiltered = notificationsChanges.filter(
+        (notification) => {
+          return notification.amount !== 0;
+        }
+      );
+
+      setChanges(notificationsfiltered);
+    }
+  }, [addresses]);
 
   const refreshAddresses = () => {
     fetchAddresses();
   };
 
-  return { addresses, error, isLoading, refreshAddresses };
+  return { addresses, error, isLoading, refreshAddresses, changes };
 }
