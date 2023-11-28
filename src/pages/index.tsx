@@ -13,7 +13,7 @@ export default function Home() {
   const { addresses, error, isLoading, refreshAddresses } = useAddresses();
 
   return (
-    <main className="border-r-1 h-screen pt-[60px]">
+    <main className="pt-[60px]">
       {!error ? (
         <div className="w-full text-center">
           <h2 className="my-6 text-3xl">Agregate an address to watcher</h2>

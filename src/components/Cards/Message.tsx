@@ -2,6 +2,7 @@
 import React from "react";
 // Utils
 import { displayKeys } from "@/utils/displayKeys";
+import { formaNumber } from "@/utils/formatNumber";
 
 type MessageProps = {
   data: any;
@@ -9,7 +10,7 @@ type MessageProps = {
 
 type MessageRowProps = {
   title: string;
-  value: number | [boolean, string];
+  value: number;
 };
 
 const MessageRow = ({ title, value }: MessageRowProps) => {
@@ -32,7 +33,7 @@ const MessageRow = ({ title, value }: MessageRowProps) => {
   return (
     <li className="text-sm ms-4">
       {displayKeys(title)}: {value > 0 ? "+" : ""}
-      {value}
+      {value < 0.0001 ? value : formaNumber(value)}
     </li>
   );
 };

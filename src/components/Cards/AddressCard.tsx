@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 // Types
 import { accountType } from "@/types/types";
+// Utils
+import { formaNumber } from "@/utils/formatNumber";
 
 type AddressCardProps = {
   addressInfo: accountType;
@@ -20,7 +22,7 @@ export default function AddressCard({ addressInfo, index }: AddressCardProps) {
       >
         <div>{addressInfo.id}</div>
         <div className="col-span-2">{addressInfo.address}</div>
-        <div>{addressInfo.amount / 1000000}</div>
+        <div>{formaNumber(addressInfo.amount / 1000000)}</div>
       </main>{" "}
     </Link>
   );

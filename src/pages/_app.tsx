@@ -87,8 +87,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <section className="col-span-4">
         <Component {...pageProps} />{" "}
       </section>
-      <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen mt-[30px]">
-        <h1 className="my-[30px] text-3xl">Notifications</h1>
+      <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen mt-[5px]">
+        <h1 className="my-[35px] text-lg font-bold">NOTIFICATIONS</h1>
         {message && <NotificationCard message={message} color={color} />}
         {newChanges &&
           newChanges.map((change: any, index: number) => {
