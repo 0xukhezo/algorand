@@ -38,6 +38,61 @@ This project is built with a powerful and modern tech stack to ensure robustness
 
 Feel free to explore the documentation of each technology for more in-depth information and resources.
 
+## Routes
+
+┌ ○ / 
+
+├ /_app 
+
+├ ○ /404 
+
+├ ○ /address/[address] 
+
+├ λ /api/getAddressByAddress 
+
+├ λ /api/getAddresses 
+
+├ λ /api/getAlgorandInfo 
+
+├ λ /api/postAddress 
+
+└ λ /api/updateAddresses
+
+## Project Structure
+
+/ - Home Page
+
+The main landing page of the application.
+
+
+/404 - Not Found Page
+
+Page displayed when a route is not found (404 error).
+
+/address/[address] - Address Details Page
+
+Displays details for a specific Algorand account based on the provided address.
+
+/api/getAddressByAddress - API Endpoint
+
+API endpoint to retrieve details for a specific Algorand account by its address.
+
+/api/getAddresses - API Endpoint
+
+API endpoint to retrieve a list of Algorand account addresses.
+
+/api/getAlgorandInfo - API Endpoint
+
+API endpoint to retrieve general information about the Algorand blockchain.
+
+/api/postAddress - API Endpoint
+
+API endpoint to add a new Algorand account address to the watcher list.
+
+/api/updateAddresses - API Endpoint
+
+API endpoint to update the state of watched Algorand account addresses.
+
 ## Getting Started
 
 1. **Clone the Repository:**
