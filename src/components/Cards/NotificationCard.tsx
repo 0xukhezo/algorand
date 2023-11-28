@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 type NotificationCardProps = {
-  message: string | undefined;
+  message: string | undefined | ReactElement;
   color: string;
   index?: number;
 };
@@ -13,13 +13,13 @@ export default function NotificationCard({
 }: NotificationCardProps) {
   return (
     <div
-      className="max-w-[275px] max-h-[90px] absolute right-10 rounded-xl z-50"
+      className="max-w-[275px] absolute right-10 rounded-xl z-50"
       style={{
         backgroundColor: color,
         top: `${index !== undefined ? index * 90 + 140 : 70}px`,
       }}
     >
-      <div className="px-4 pt-4 mb-4">{message}</div>
+      <div className="px-4 pt-4 mb-2">{message}</div>
       <div className="progress"></div>
     </div>
   );
