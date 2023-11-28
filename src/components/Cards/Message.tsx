@@ -1,5 +1,7 @@
-import { displayKeys } from "@/utils/displayKeys";
+// React
 import React from "react";
+// Utils
+import { displayKeys } from "@/utils/displayKeys";
 
 type MessageProps = {
   data: any;

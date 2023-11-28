@@ -1,5 +1,8 @@
+// Supabase Client
 import { supabase } from "../../server/supabase-client";
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Api
 import getAddressByAddress from "./getAddressByAddress";
 import getAlgorandInfo from "./getAlgorandInfo";
 

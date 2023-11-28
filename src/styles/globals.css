@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-    overflow-y: hidden;
-  }
-  
-
 @keyframes colorChange {
     0%, 100% {
         background-color: #b9fe9e;
@@ -23,6 +18,10 @@ html{
     100% {
       width: 0;
     }
+}
+
+html{
+    overflow-y: hidden;
 }
 
 .spinner {

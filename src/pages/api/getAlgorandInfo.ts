@@ -1,4 +1,6 @@
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Axios
 import axios from "axios";
 
 export default async function getAlgorandInfo(

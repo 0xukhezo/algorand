@@ -1,7 +1,11 @@
-import getAddresses from "../pages/api/getAddresses";
+// Jest
 import { describe, expect } from "@jest/globals";
+// Supabase Client
 import { supabase } from "../server/supabase-client";
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Api
+import getAddresses from "../pages/api/getAddresses";
 import getAddressByAddress from "../pages/api/getAddressByAddress";
 import postAddress from "../pages/api/postAddress";
 import updateAddresses from "../pages/api/updateAddresses";

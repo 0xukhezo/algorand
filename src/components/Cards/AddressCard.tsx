@@ -1,6 +1,9 @@
-import { accountType } from "@/types/types";
-import Link from "next/link";
+// React
 import React from "react";
+// Next
+import Link from "next/link";
+// Types
+import { accountType } from "@/types/types";
 
 type AddressCardProps = {
   addressInfo: accountType;

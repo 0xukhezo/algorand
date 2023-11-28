@@ -1,5 +1,8 @@
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Supabase Client
 import { supabase } from "../../server/supabase-client";
+// Api
 import getAlgorandInfo from "./getAlgorandInfo";
 
 export default async function updateAddresses(

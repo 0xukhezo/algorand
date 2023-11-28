@@ -1,10 +1,14 @@
+// React
+import { useEffect, useState } from "react";
+// Next
+import type { AppProps } from "next/app";
+// Components
 import Message from "@/components/Cards/Message";
 import NotificationCard from "@/components/Cards/NotificationCard";
+// Hooks
 import useAddresses from "@/hooks/useAddresses";
-import { supabase } from "@/server/supabase-client";
+// Styles
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const { addresses, changes } = useAddresses();

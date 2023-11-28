@@ -1,4 +1,6 @@
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Supabase Client
 import { supabase } from "../../server/supabase-client";
 
 export default async function getAddresses(

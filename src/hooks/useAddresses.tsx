@@ -1,6 +1,10 @@
+// React
 import { useEffect, useState } from "react";
-import { accountType } from "@/types/types";
+// Next
 import { NextApiRequest, NextApiResponse } from "next";
+// Types
+import { accountType } from "@/types/types";
+// Api
 import getAddresses from "@/pages/api/getAddresses";
 
 export default function useAddresses() {
@@ -9,7 +13,6 @@ export default function useAddresses() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [changes, setChanges] = useState<any>([]);
-  const [firstTime, setFirstTime] = useState(true);
 
   const fetchAddresses = async () => {
     try {

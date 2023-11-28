@@ -1,7 +1,12 @@
+// React
+import React from "react";
+// Types
+import { accountType } from "@/types/types";
+// Components
 import AddressCard from "@/components/Cards/AddressCard";
 import AddressAggregator from "@/components/AddressAggregator/AddressAggregator";
 import Loader from "@/components/Loader/Loader";
-import { accountType } from "@/types/types";
+// Hooks
 import useAddresses from "../hooks/useAddresses";
 
 export default function Home() {

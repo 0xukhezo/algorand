@@ -1,7 +1,11 @@
-import getAddressByAddress from "@/pages/api/getAddressByAddress";
-import { accountType } from "@/types/types";
-import { NextApiRequest, NextApiResponse } from "next";
+// React
 import React, { useEffect, useState } from "react";
+// Next
+import { NextApiRequest, NextApiResponse } from "next";
+// Types
+import { accountType } from "@/types/types";
+// Api
+import getAddressByAddress from "@/pages/api/getAddressByAddress";
 
 type AddressAggregatorProps = {
   refreshAddresses: () => void;
