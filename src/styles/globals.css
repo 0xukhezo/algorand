@@ -4,10 +4,10 @@
 
 @keyframes colorChange {
     0%, 100% {
-        background-color: #b9fe9e;
+        background-color: #91b6f3;
     }
     50% {
-        background-color: #5aaf39;
+        background-color: #2575f8;
     }
 }
 
@@ -48,7 +48,7 @@
 .dot {
     width: 10px;
     height: 10px;
-    background-color: #1ABB6E;
+    background-color: #3b82f6;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -58,7 +58,7 @@
 
 .progress{
     height: 10px;
-    background-color: #1ABB6E;
+    background-color: #3b82f6;
     width: 100%;
     border-bottom-left-radius: 20px;
     animation: progressBarAnimation 10.2s linear;
