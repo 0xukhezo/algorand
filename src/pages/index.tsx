@@ -8,7 +8,7 @@ export default function Home() {
   const { addresses, error, isLoading, refreshAddresses } = useAddresses();
 
   return (
-    <main className="border-r-1 h-screen">
+    <main className="border-r-1 h-screen pt-[60px]">
       {!error ? (
         <div className="w-full text-center">
           <h2 className="my-6 text-3xl">Agregate an address to watcher</h2>
@@ -22,16 +22,19 @@ export default function Home() {
                 <div className="col-span-2">Account</div>
                 <div>Balance</div>
               </section>
+
               {!isLoading ? (
-                addresses?.map((address: accountType, index: number) => {
-                  return (
-                    <AddressCard
-                      addressInfo={address}
-                      key={address.id}
-                      index={index}
-                    />
-                  );
-                })
+                <section className="overflow-auto h-[700px]">
+                  {addresses?.map((address: accountType, index: number) => {
+                    return (
+                      <AddressCard
+                        addressInfo={address}
+                        key={address.id}
+                        index={index}
+                      />
+                    );
+                  })}
+                </section>
               ) : (
                 <section className="flex justify-center">
                   <Loader />
