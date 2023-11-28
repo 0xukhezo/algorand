@@ -79,20 +79,24 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [changes]);
 
   return (
-    <main className="relative">
-      {message && <NotificationCard message={message} color={color} />}
-      {newChanges &&
-        changes.map((change: any, index: number) => {
-          return (
-            <NotificationCard
-              message={<Message data={change} />}
-              color={color}
-              index={index}
-              key={index}
-            />
-          );
-        })}
-      <Component {...pageProps} />
+    <main className="grid grid-cols-5">
+      <section className="col-span-4">
+        <Component {...pageProps} />{" "}
+      </section>
+      <section className="flex flex-col px-4 w-[480px] overflow-y-auto">
+        {message && <NotificationCard message={message} color={color} />}
+        {newChanges &&
+          newChanges.map((change: any, index: number) => {
+            return (
+              <NotificationCard
+                message={<Message data={change} />}
+                color={color}
+                index={index}
+                key={index}
+              />
+            );
+          })}
+      </section>
     </main>
   );
 }
