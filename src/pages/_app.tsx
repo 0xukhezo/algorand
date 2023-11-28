@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 // Components
 import Message from "@/components/Cards/Message";
 import NotificationCard from "@/components/Cards/NotificationCard";
+import Navbar from "@/components/Layout/Navbar";
 // Hooks
 import useAddresses from "@/hooks/useAddresses";
 // Styles
@@ -31,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       try {
         if (addresses) {
           setMessage("Updating...");
-          setColor("#4ade80");
+          setColor("#F5F5F5");
 
           const response = await fetch("/api/updateAddresses", {
             method: "POST",
@@ -47,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
             const errorMessage = await response.text();
             throw new Error(`Error saving address: ${errorMessage}`);
           } else {
-            setColor("#4ade80");
+            setColor("#F5F5F5");
             setMessage("Data updated successfully");
           }
         }
@@ -83,25 +84,30 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [changes]);
 
   return (
-    <main className="grid grid-cols-5 overlow-y-hidden">
-      <section className="col-span-4">
-        <Component {...pageProps} />{" "}
-      </section>
-      <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen mt-[5px]">
-        <h1 className="my-[35px] text-lg font-bold">NOTIFICATIONS</h1>
-        {message && <NotificationCard message={message} color={color} />}
-        {newChanges &&
-          newChanges.map((change: any, index: number) => {
-            return (
-              <NotificationCard
-                message={<Message data={change} />}
-                color={color}
-                index={index}
-                data={change}
-                key={index}
-              />
-            );
-          })}
+    <main>
+      <Navbar />
+      <section className="grid grid-cols-7 overlow-y-hidden">
+        <section className="col-span-5">
+          <Component {...pageProps} />{" "}
+        </section>
+        <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen mt-[5px]">
+          <h1 className="my-[35px] text-lg font-bold uppercase">
+            Notifications
+          </h1>
+          {message && <NotificationCard message={message} color={color} />}
+          {newChanges &&
+            newChanges.map((change: any, index: number) => {
+              return (
+                <NotificationCard
+                  message={<Message data={change} />}
+                  color={color}
+                  index={index}
+                  data={change}
+                  key={index}
+                />
+              );
+            })}
+        </section>
       </section>
     </main>
   );

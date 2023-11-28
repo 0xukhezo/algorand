@@ -33,7 +33,7 @@ html{
 .dot {
     width: 10px;
     height: 10px;
-    background-color: #b9fe9e;
+    background-color: #1ABB6E;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -43,7 +43,7 @@ html{
 
 .progress{
     height: 10px;
-    background-color: #5aaf39;
+    background-color: #1ABB6E;
     width: 100%;
     border-bottom-left-radius: 20px;
     animation: progressBarAnimation 10.2s linear;

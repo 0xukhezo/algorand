@@ -13,30 +13,30 @@ export default function Home() {
   const { addresses, error, isLoading, refreshAddresses } = useAddresses();
 
   return (
-    <main className="pt-[60px]">
+    <main className="mt-[40px] px-20">
       {!error ? (
-        <div className="w-full text-center">
-          <h2 className="my-6 text-3xl">Agregate an address to watcher</h2>
+        <div className="w-full">
+          <h2 className="mb-6 text-lg font-bold uppercase">
+            Agregate an address to watcher
+          </h2>
           <AddressAggregator refreshAddresses={refreshAddresses} />
 
           {addresses && addresses?.length > 0 ? (
-            <>
-              <h2 className="my-6 text-3xl">All addresses in Watcher</h2>
-              <section className="grid grid-cols-4 text-center border-b-4 pb-6 text-lg font-medium">
+            <section className="mt-[60px]">
+              <h2 className="my-6 text-lg font-bold uppercase">
+                Your addresses
+              </h2>
+              <section className="grid grid-cols-8 text-start border-b-2 pb-6 text-lg font-medium px-8">
                 <div>ID</div>
-                <div className="col-span-2">Account</div>
+                <div className="col-span-6">Account</div>
                 <div>Balance</div>
               </section>
 
               {!isLoading ? (
-                <section className="overflow-auto h-[700px]">
+                <section className="overflow-auto h-[700px] px-8">
                   {addresses?.map((address: accountType, index: number) => {
                     return (
-                      <AddressCard
-                        addressInfo={address}
-                        key={address.id}
-                        index={index}
-                      />
+                      <AddressCard addressInfo={address} key={address.id} />
                     );
                   })}
                 </section>
@@ -45,7 +45,7 @@ export default function Home() {
                   <Loader />
                 </section>
               )}
-            </>
+            </section>
           ) : !isLoading ? (
             <div className="mt-8">
               Not accounts in watcher. Please enter an account{" "}

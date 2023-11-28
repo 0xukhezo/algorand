@@ -73,7 +73,7 @@ export default function AddressAggregator({
               if (statusCode === 200) {
                 setAddress(data.data);
               } else {
-                setError(data.error || "Error 500");
+                setError(data.error);
               }
             },
           }),
@@ -87,25 +87,48 @@ export default function AddressAggregator({
         setIsLoading(false);
       }
     };
+
     if (isValid && newAddress) {
       fetchAddresses(newAddress);
     }
   }, [newAddress]);
-
+  console.log(error);
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex  items-center">
       <div>
-        <input
-          value={newAddress || ""}
-          onChange={(e) => handleAddress(e.target.value)}
-          type="text"
-          name="fundName"
-          id="fundName"
-          className={`shadow-input rounded-lg w-[950px] h-[40px] px-5 outline-none border-2 ${
-            isValid && address === null ? "border-black" : "border-red-500"
-          }`}
-          placeholder="QUBJYH3..."
-        />
+        <div className="flex">
+          <input
+            value={newAddress || ""}
+            onChange={(e) => handleAddress(e.target.value)}
+            type="text"
+            name="fundName"
+            id="fundName"
+            className={`shadow-input text-sm rounded-l-xl w-[700px] py-3 px-5 outline-none bg-gray-100 placeholder:text-gray-600 ${
+              isValid && address === null ? "" : "border-red-500 border-1"
+            }`}
+            placeholder="Write your address QUBJYH3..."
+          />
+          {error ? (
+            <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+              Add address
+            </p>
+          ) : isLoading ? (
+            <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+              Add address
+            </p>
+          ) : (
+            <button
+              className={`bg-blue-500 px-8 py-3 rounded-r-xl text-white ${
+                !isValid || !newAddress || address ? "opacity-50" : ""
+              }`}
+              disabled={!isValid || !newAddress || !!address}
+              onClick={() => postData()}
+            >
+              Add address
+            </button>
+          )}
+        </div>
+
         {!isValid && address === null && (
           <p className="text-red-500 text-sm mt-1">
             Address not valid. Please enter a valid Algorand address.
@@ -116,27 +139,12 @@ export default function AddressAggregator({
             Address in the list. Enter other address
           </p>
         )}
+        {error && (
+          <p className="text-red-500 text-sm mt-1">
+            Error in the server. Try later
+          </p>
+        )}
       </div>
-
-      {error ? (
-        <p className="text-red-500 text-sm mt-1">
-          Error in the server. Try later
-        </p>
-      ) : isLoading ? (
-        <p className="bg-green-500 px-8 py-3 rounded-xl mx-10 text-white opacity-50 max-w-[160px]">
-          Add address
-        </p>
-      ) : (
-        <button
-          className={`bg-green-500 px-8 py-3 rounded-xl mx-10 text-white ${
-            !isValid || !newAddress || address ? "opacity-50" : ""
-          }`}
-          disabled={!isValid || !newAddress || !!address}
-          onClick={() => postData()}
-        >
-          Add address
-        </button>
-      )}
     </div>
   );
 }

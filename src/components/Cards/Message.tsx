@@ -22,7 +22,7 @@ const MessageRow = ({ title, value }: MessageRowProps) => {
     return (
       <>
         {value[0] ? null : (
-          <li className="text-sm ms-4">
+          <li className="text-sm items-center">
             {title}:{value}
           </li>
         )}
@@ -31,7 +31,7 @@ const MessageRow = ({ title, value }: MessageRowProps) => {
   }
 
   return (
-    <li className="text-sm ms-4">
+    <li className="text-sm items-center">
       {displayKeys(title)}: {value > 0 ? "+" : ""}
       {value < 0.0001 ? value : formaNumber(value)}
     </li>
@@ -40,8 +40,8 @@ const MessageRow = ({ title, value }: MessageRowProps) => {
 
 export default function Message({ data }: MessageProps) {
   return (
-    <ul>
-      <li>{data.address.slice(0, 6)}... have a change</li>
+    <ul className="text-start">
+      <li>{data.address.slice(0, 6)}...</li>
       {Object.keys(data).map((key: string) => {
         return <MessageRow title={key} value={data[key]} />;
       })}
