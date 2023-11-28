@@ -7,14 +7,15 @@ export default async function getAddresses(
 ) {
   if (req.method === "GET") {
     try {
-      const { data } = await supabase.from("Addresses").select("*");
+      const { data } = await supabase
+        .from("Addresses")
+        .select("*")
+        .order("id", { ascending: true });
 
-      res
-        .status(200)
-        .json({
-          message: "Addresses found in the list of observers",
-          data: data,
-        });
+      res.status(200).json({
+        message: "Addresses found in the list of observers",
+        data: data,
+      });
       return { data };
     } catch (error) {
       res

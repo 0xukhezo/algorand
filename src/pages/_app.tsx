@@ -56,10 +56,10 @@ export default function App({ Component, pageProps }: AppProps) {
     if (isUpdating) {
       updateAddressesPeriodically();
 
-      const intervalId = setInterval(updateAddressesPeriodically, 10000);
+      const intervalId = setInterval(updateAddressesPeriodically, 60000);
       const intervalIdMessage = setInterval(() => {
         setMessage(undefined);
-      }, 5000);
+      }, 10000);
 
       return () => {
         clearInterval(intervalId);
@@ -72,7 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
     setNewChanges(changes);
     const intervalIdNotification = setInterval(() => {
       setNewChanges(undefined);
-    }, 5000);
+    }, 10000);
     return () => {
       clearInterval(intervalIdNotification);
     };
@@ -83,7 +83,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <section className="col-span-4">
         <Component {...pageProps} />{" "}
       </section>
-      <section className="flex flex-col px-4 w-[480px] overflow-y-auto">
+      <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen">
+        <h1 className="my-[30px] text-3xl">Notifications</h1>
         {message && <NotificationCard message={message} color={color} />}
         {newChanges &&
           newChanges.map((change: any, index: number) => {
@@ -92,6 +93,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 message={<Message data={change} />}
                 color={color}
                 index={index}
+                data={change}
                 key={index}
               />
             );

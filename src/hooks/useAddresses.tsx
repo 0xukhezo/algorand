@@ -9,6 +9,7 @@ export default function useAddresses() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [changes, setChanges] = useState<any>([]);
+  const [firstTime, setFirstTime] = useState(true);
 
   const fetchAddresses = async () => {
     try {
@@ -35,13 +36,14 @@ export default function useAddresses() {
 
   useEffect(() => {
     fetchAddresses();
-    const intervalId = setInterval(fetchAddresses, 10500);
+    const intervalId = setInterval(fetchAddresses, 61000);
     return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
     if (addresses && addresses?.length > 0) {
-      setPrevAddresses(addresses);
+      const newPrevAddresses = [...addresses];
+      setPrevAddresses(newPrevAddresses);
       const notificationsChanges = addresses
         .map((account: any, index: number) => {
           const addressData = prevAddresses && prevAddresses[index];
@@ -82,13 +84,7 @@ export default function useAddresses() {
         address: string;
         amount: number;
       }>;
-      const notificationsfiltered = notificationsChanges.filter(
-        (notification) => {
-          return notification.amount !== 0;
-        }
-      );
-
-      setChanges(notificationsfiltered);
+      setChanges(notificationsChanges);
     }
   }, [addresses]);
 

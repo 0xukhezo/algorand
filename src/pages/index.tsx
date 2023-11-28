@@ -11,17 +11,13 @@ export default function Home() {
     <main className="border-r-1 h-screen">
       {!error ? (
         <div className="w-full text-center">
-          <h2 className="my-6 text-2xl font-semibold">
-            Agregate an address to watcher
-          </h2>
+          <h2 className="my-6 text-3xl">Agregate an address to watcher</h2>
           <AddressAggregator refreshAddresses={refreshAddresses} />
 
           {addresses && addresses?.length > 0 ? (
             <>
-              <h2 className="my-6 text-2xl font-semibold">
-                All addresses in Watcher
-              </h2>
-              <section className="grid grid-cols-4 text-center border-b-4 pb-6">
+              <h2 className="my-6 text-3xl">All addresses in Watcher</h2>
+              <section className="grid grid-cols-4 text-center border-b-4 pb-6 text-lg font-medium">
                 <div>ID</div>
                 <div className="col-span-2">Account</div>
                 <div>Balance</div>
