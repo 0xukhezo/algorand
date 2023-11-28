@@ -3,6 +3,7 @@ import React from "react";
 // Components
 import Message from "../Cards/Message";
 import NotificationCard from "../Cards/NotificationCard";
+import Loader from "../Loader/Loader";
 
 type NotificationsProps = {
   color: string;
@@ -16,7 +17,7 @@ export default function Notifications({
   newChanges,
 }: NotificationsProps) {
   return (
-    <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen my-[5px] pb-[30px]">
+    <section className="flex flex-col px-4 lg:w-[480px] w-full overflow-y-auto lg:h-screen my-[5px] pb-[30px]">
       <h1 className="my-[35px] text-lg font-bold uppercase">Notifications</h1>
       {message && <NotificationCard message={message} color={color} />}
       {newChanges &&
@@ -31,6 +32,9 @@ export default function Notifications({
             />
           );
         })}
+      {message === undefined && newChanges === undefined && (
+        <NotificationCard message={"Updating data..."} color={color} />
+      )}
     </section>
   );
 }

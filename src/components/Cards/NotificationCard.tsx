@@ -1,5 +1,6 @@
 // React
 import React, { ReactElement } from "react";
+import Loader from "../Loader/Loader";
 
 type NotificationCardProps = {
   message: string | undefined | ReactElement;
@@ -31,14 +32,22 @@ export default function NotificationCard({
 
   return (
     <div
-      className="max-w-[350px] h-fit right-5 rounded-xl z-50 my-2"
+      className={`max-w-[600px] lg:max-w-[350px] h-fit right-5 rounded-xl z-50 my-2 ${
+        message !== "Updating data..." ? "" : "text-center flex flex-col"
+      }`}
       style={{
         backgroundColor: color,
         top: `${index !== undefined ? index * 90 + 140 : 70}px`,
       }}
     >
       <div className="px-4 pt-4 mb-2">{message}</div>
-      <div className="progress"></div>
+      {message !== "Updating data..." ? (
+        <div className="progress"></div>
+      ) : (
+        <div className="flex justify-center -mt-4">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 }

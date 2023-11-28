@@ -20,9 +20,24 @@
     }
 }
 
-html{
-    overflow-y: hidden;
+@keyframes fillProgress {
+    0% {
+      width: 0;
+    }
+    25% {
+      width: 25%;
+    }
+    50% {
+      width: 50%;
+    }
+    75% {
+      width: 75%;
+    }
+    100% {
+      width: 100%;
+    }
 }
+
 
 .spinner {
     position: relative;
@@ -48,4 +63,5 @@ html{
     border-bottom-left-radius: 20px;
     animation: progressBarAnimation 10.2s linear;
 }
+
 

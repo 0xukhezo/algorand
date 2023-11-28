@@ -1,9 +1,9 @@
 // React
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 // Next
 import Link from "next/link";
+import Image from "next/image";
 // Components
-import Loader from "@/components/Loader/Loader";
 import InfoDisplayer from "../Cards/InfoDisplayer";
 // Utils
 import { formaNumber } from "@/utils/formatNumber";
@@ -11,6 +11,8 @@ import { formaNumber } from "@/utils/formatNumber";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 // Types
 import { accountType } from "@/types/types";
+// Images
+import Token from "../../../public/AlgorandToken.png";
 
 type AccountDetailsProps = {
   address: accountType;
@@ -26,22 +28,48 @@ export default function AccountDetails({ address }: AccountDetailsProps) {
   ];
 
   const column2 = [
-    { title: "Balance", value: formaNumber(address.amount / 1000000) },
+    {
+      title: "Balance",
+      value: (
+        <div className="flex">
+          {formaNumber(address.amount / 1000000)}
+          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+        </div>
+      ),
+    },
     {
       title: "Pending Rewards",
-      value: formaNumber(address.pendingRewards / 1000000),
+      value: (
+        <div className="flex">
+          {formaNumber(address.pendingRewards / 1000000)}
+          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+        </div>
+      ),
     },
     {
       title: "Balance Without Pending Rewards",
-      value: formaNumber(address.amountWithoutPendingRewards / 1000000),
+      value: (
+        <div className="flex">
+          {formaNumber(address.amountWithoutPendingRewards / 1000000)}{" "}
+          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+        </div>
+      ),
     },
-    { title: "Min Balance", value: formaNumber(address.minBalance / 1000000) },
+    {
+      title: "Min Balance",
+      value: (
+        <div className="flex">
+          {formaNumber(address.minBalance / 1000000)}{" "}
+          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+        </div>
+      ),
+    },
     { title: "Total Assets Opened", value: address.totalAssetsOptedIn },
     { title: "Total Assets Created", value: address.totalCreatedAssets },
   ];
 
   return (
-    <main className="mt-[40px] px-20">
+    <main className="mt-[40px] xl:px-20 lg:px-16 md:px-10 sm:px-6 px-4">
       <div className="flex items-center mb-6">
         <Link href="/">
           <ArrowLeftIcon height={24} width={24} aria-hidden="true" />{" "}

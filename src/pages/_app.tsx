@@ -85,15 +85,17 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main>
       <Navbar />
-      <section className="grid grid-cols-7 overlow-y-hidden">
-        <section className="col-span-5">
+      <section className="grid grid-cols-7">
+        <section className="col-span-7 lg:col-span-5">
           <Component {...pageProps} />{" "}
         </section>
-        <Notifications
-          color={color}
-          newChanges={newChanges}
-          message={message}
-        />
+        <section className="col-span-7 lg:col-span-2">
+          <Notifications
+            color={color}
+            newChanges={newChanges}
+            message={message}
+          />
+        </section>
       </section>
     </main>
   );

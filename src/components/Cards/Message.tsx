@@ -41,7 +41,9 @@ const MessageRow = ({ title, value }: MessageRowProps) => {
 export default function Message({ data }: MessageProps) {
   return (
     <ul className="text-start">
-      <li>{data.address.slice(0, 6)}...</li>
+      <li>
+        {data.address.slice(0, 6)}...{data.address.slice(-4)}
+      </li>
       {Object.keys(data).map((key: string) => {
         return <MessageRow title={key} value={data[key]} key={key} />;
       })}

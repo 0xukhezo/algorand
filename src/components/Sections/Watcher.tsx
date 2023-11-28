@@ -10,7 +10,7 @@ export default function Watcher() {
   const { addresses, error, isLoading, refreshAddresses } = useAddresses();
 
   return (
-    <main className="mt-[40px] px-20">
+    <main className="mt-[40px] xl:px-20 lg:px-16 md:px-10 sm:px-6 px-4">
       {!error ? (
         <div className="w-full">
           <AddressAggregator refreshAddresses={refreshAddresses} />

@@ -106,7 +106,7 @@ export default function AddressAggregator({
 
   return (
     <div className="flex flex-col">
-      <h2 className="mb-6 text-lg font-bold uppercase">
+      <h2 className="mb-6 md:text-lg font-bold uppercase">
         Aggregate an address to watcher
       </h2>
       <div className="flex">
@@ -122,16 +122,16 @@ export default function AddressAggregator({
           placeholder="Write your address QUBJYH3..."
         />
         {error ? (
-          <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+          <p className="bg-blue-500 px-2 lg:px-8 py-3 text-center rounded-r-xl text-white opacity-50 min-w-[140px]">
             Add address
           </p>
         ) : isLoading ? (
-          <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+          <p className="bg-blue-500 px-2 lg:px-8 py-3 text-center rounded-r-xl text-white opacity-50 min-w-[140px]">
             Add address
           </p>
         ) : (
           <button
-            className={`bg-blue-500 px-8 py-3 rounded-r-xl text-white ${
+            className={`bg-blue-500 px-2 lg:px-8 py-3 text-center rounded-r-xl text-white min-w-[140px] ${
               !isValid || !newAddress || address ? "opacity-50" : ""
             }`}
             disabled={!isValid || !newAddress || !!address}
