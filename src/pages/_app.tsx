@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 // Next
 import type { AppProps } from "next/app";
 // Components
-import Message from "@/components/Cards/Message";
-import NotificationCard from "@/components/Cards/NotificationCard";
+import Notifications from "@/components/Sections/Notifications";
 import Navbar from "@/components/Layout/Navbar";
 // Hooks
 import useAddresses from "@/hooks/useAddresses";
@@ -90,24 +89,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <section className="col-span-5">
           <Component {...pageProps} />{" "}
         </section>
-        <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen my-[5px] pb-[30px]">
-          <h1 className="my-[35px] text-lg font-bold uppercase">
-            Notifications
-          </h1>
-          {message && <NotificationCard message={message} color={color} />}
-          {newChanges &&
-            newChanges.map((change: any, index: number) => {
-              return (
-                <NotificationCard
-                  message={<Message data={change} />}
-                  color={color}
-                  index={index}
-                  data={change}
-                  key={index}
-                />
-              );
-            })}
-        </section>
+        <Notifications
+          color={color}
+          newChanges={newChanges}
+          message={message}
+        />
       </section>
     </main>
   );

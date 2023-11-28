@@ -105,52 +105,53 @@ export default function AddressAggregator({
   }, [error]);
 
   return (
-    <div className="flex  items-center">
-      <div>
-        <div className="flex">
-          <input
-            value={newAddress || ""}
-            onChange={(e) => handleAddress(e.target.value)}
-            type="text"
-            name="fundName"
-            id="fundName"
-            className={`shadow-input text-sm rounded-l-xl w-[700px] py-3 px-5 outline-none bg-gray-100 placeholder:text-gray-600 ${
-              isValid && address === null ? "" : "border-red-500 border-1"
+    <div className="flex flex-col">
+      <h2 className="mb-6 text-lg font-bold uppercase">
+        Aggregate an address to watcher
+      </h2>
+      <div className="flex">
+        <input
+          value={newAddress || ""}
+          onChange={(e) => handleAddress(e.target.value)}
+          type="text"
+          name="fundName"
+          id="fundName"
+          className={`shadow-input text-sm rounded-l-xl w-[700px] py-3 px-5 outline-none bg-gray-100 placeholder:text-gray-600 ${
+            isValid && address === null ? "" : "border-red-500 border-1"
+          }`}
+          placeholder="Write your address QUBJYH3..."
+        />
+        {error ? (
+          <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+            Add address
+          </p>
+        ) : isLoading ? (
+          <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
+            Add address
+          </p>
+        ) : (
+          <button
+            className={`bg-blue-500 px-8 py-3 rounded-r-xl text-white ${
+              !isValid || !newAddress || address ? "opacity-50" : ""
             }`}
-            placeholder="Write your address QUBJYH3..."
-          />
-          {error ? (
-            <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
-              Add address
-            </p>
-          ) : isLoading ? (
-            <p className="bg-blue-500 px-8 py-3 rounded-r-xl text-white opacity-50 max-w-[160px]">
-              Add address
-            </p>
-          ) : (
-            <button
-              className={`bg-blue-500 px-8 py-3 rounded-r-xl text-white ${
-                !isValid || !newAddress || address ? "opacity-50" : ""
-              }`}
-              disabled={!isValid || !newAddress || !!address}
-              onClick={() => postData()}
-            >
-              Add address
-            </button>
-          )}
-        </div>
-        {!isValid && address === null && (
-          <p className="text-red-500 text-sm mt-1">
-            Address not valid. Please enter a valid Algorand address.
-          </p>
+            disabled={!isValid || !newAddress || !!address}
+            onClick={() => postData()}
+          >
+            Add address
+          </button>
         )}
-        {address && isValid && (
-          <p className="text-red-500 text-sm mt-1">
-            Address in the list. Enter other address
-          </p>
-        )}
-        {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       </div>
+      {!isValid && address === null && (
+        <p className="text-red-500 text-sm mt-1">
+          Address not valid. Please enter a valid Algorand address.
+        </p>
+      )}
+      {address && isValid && (
+        <p className="text-red-500 text-sm mt-1">
+          Address in the list. Enter other address
+        </p>
+      )}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 }
