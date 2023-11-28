@@ -43,7 +43,7 @@ export default function Message({ data }: MessageProps) {
     <ul className="text-start">
       <li>{data.address.slice(0, 6)}...</li>
       {Object.keys(data).map((key: string) => {
-        return <MessageRow title={key} value={data[key]} />;
+        return <MessageRow title={key} value={data[key]} key={key} />;
       })}
     </ul>
   );

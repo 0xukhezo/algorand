@@ -34,7 +34,7 @@ export default function Home() {
 
               {!isLoading ? (
                 <section className="overflow-auto h-[700px] px-8">
-                  {addresses?.map((address: accountType, index: number) => {
+                  {addresses?.map((address: accountType) => {
                     return (
                       <AddressCard addressInfo={address} key={address.id} />
                     );
