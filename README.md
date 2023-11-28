@@ -1,6 +1,6 @@
 # Algorand Watcher
 
-Algorand Watcher is a simple yet powerful tool designed to monitor Algorand account addresses and provide notifications when their state changes. This project includes a REST API for managing the watched accounts and obtaining their current states.
+Algorand Watcher is a simple yet powerful tool designed to monitor Algorand account addresses and provide notifications when their state changes. This project includes a REST API to manage the watched accounts and obtain their current states.
 
 ## Features
 
@@ -32,7 +32,7 @@ This project is built with a powerful and modern tech stack to ensure robustness
 
 - **Algorand API:** Leveraging the Algorand blockchain API to interact with Algorand accounts and retrieve real-time data.
 
-- **Jest:** A delightful JavaScript testing framework for unit testing and ensuring the reliability of your code.
+- **Jest:** A JavaScript testing framework for unit testing and ensuring the reliability of your code.
 
 - **TypeScript:** A superset of JavaScript that adds static typing, enhancing code quality and developer productivity.
 
@@ -40,23 +40,23 @@ Feel free to explore the documentation of each technology for more in-depth info
 
 ## Routes
 
-┌ ○ / 
+┌ / 
 
 ├ /_app 
 
-├ ○ /404 
+├ /404 
 
-├ ○ /address/[address] 
+├ /address/[address] 
 
-├ λ /api/getAddressByAddress 
+├ /api/getAddressByAddress 
 
-├ λ /api/getAddresses 
+├ /api/getAddresses 
 
-├ λ /api/getAlgorandInfo 
+├ /api/getAlgorandInfo 
 
-├ λ /api/postAddress 
+├ /api/postAddress 
 
-└ λ /api/updateAddresses
+└ /api/updateAddresses
 
 ## Project Structure
 
@@ -91,7 +91,7 @@ API endpoint to add a new Algorand account address to the watcher list.
 
 /api/updateAddresses - API Endpoint
 
-API endpoint to update the state of watched Algorand account addresses.
+API endpoint to update the state of tracked Algorand account addresses.
 
 ## Getting Started
 
