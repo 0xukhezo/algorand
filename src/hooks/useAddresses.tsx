@@ -35,7 +35,7 @@ export default function useAddresses() {
 
   useEffect(() => {
     fetchAddresses();
-    const intervalId = setInterval(fetchAddresses, 12000);
+    const intervalId = setInterval(fetchAddresses, 10500);
     return () => clearInterval(intervalId);
   }, []);
 

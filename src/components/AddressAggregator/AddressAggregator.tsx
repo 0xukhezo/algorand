@@ -47,7 +47,7 @@ export default function AddressAggregator({
       setNewAddress("");
       setTimeout(() => {
         refreshAddresses();
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +89,7 @@ export default function AddressAggregator({
   }, [newAddress]);
 
   return (
-    <div className="flex justify-around">
+    <div className="flex justify-center items-center">
       <div>
         <input
           value={newAddress || ""}
@@ -97,7 +97,7 @@ export default function AddressAggregator({
           type="text"
           name="fundName"
           id="fundName"
-          className={`shadow-input rounded-lg w-[650px] h-[40px] px-5 outline-none border-2 ${
+          className={`shadow-input rounded-lg w-[950px] h-[40px] px-5 outline-none border-2 ${
             isValid && address === null ? "border-black" : "border-red-500"
           }`}
           placeholder="QUBJYH3..."

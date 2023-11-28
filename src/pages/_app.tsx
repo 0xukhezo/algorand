@@ -68,6 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className="relative">
       {message && <NotificationCard message={message} color={color} />}
       {changes &&
+        message &&
         changes.map((change: any, index: number) => {
           return (
             <NotificationCard
