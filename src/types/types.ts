@@ -26,4 +26,5 @@ type algorandAsset = {
 type algorandAppsTotalSchema = {
   "num-byte-slice": number;
   "num-uint": number;
+  [key: string]: number;
 };

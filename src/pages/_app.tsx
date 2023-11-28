@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <section className="col-span-5">
           <Component {...pageProps} />{" "}
         </section>
-        <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen mt-[5px]">
+        <section className="notifications flex flex-col px-4 w-[480px] overflow-y-auto h-screen my-[5px] pb-[30px]">
           <h1 className="my-[35px] text-lg font-bold uppercase">
             Notifications
           </h1>

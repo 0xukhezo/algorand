@@ -17,15 +17,14 @@ export default function Home() {
       {!error ? (
         <div className="w-full">
           <h2 className="mb-6 text-lg font-bold uppercase">
-            Agregate an address to watcher
+            Aggregate an address to watcher
           </h2>
           <AddressAggregator refreshAddresses={refreshAddresses} />
-
+          <h2 className="my-6 text-lg font-bold uppercase mt-[60px]">
+            Your addresses
+          </h2>
           {addresses && addresses?.length > 0 ? (
-            <section className="mt-[60px]">
-              <h2 className="my-6 text-lg font-bold uppercase">
-                Your addresses
-              </h2>
+            <section>
               <section className="grid grid-cols-8 text-start border-b-2 pb-6 text-lg font-medium px-8">
                 <div>ID</div>
                 <div className="col-span-6">Account</div>
@@ -41,7 +40,7 @@ export default function Home() {
                   })}
                 </section>
               ) : (
-                <section className="flex justify-center">
+                <section className="flex justify-center mt-32">
                   <Loader />
                 </section>
               )}
@@ -51,13 +50,13 @@ export default function Home() {
               Not accounts in watcher. Please enter an account{" "}
             </div>
           ) : (
-            <section className="flex justify-center">
+            <section className="flex justify-center mt-32">
               <Loader />
             </section>
           )}
         </div>
       ) : (
-        <span>Error loading addresses</span>
+        <span>Error loading addresses. Reload the page.</span>
       )}
     </main>
   );
