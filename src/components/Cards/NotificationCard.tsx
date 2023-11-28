@@ -13,7 +13,7 @@ export default function NotificationCard({
 }: NotificationCardProps) {
   return (
     <div
-      className="max-w-[275px] absolute right-10 rounded-xl z-50"
+      className="max-w-[350px] absolute right-5 rounded-xl z-50"
       style={{
         backgroundColor: color,
         top: `${index !== undefined ? index * 90 + 140 : 70}px`,

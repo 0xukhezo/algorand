@@ -1,3 +1,4 @@
+import Message from "@/components/Cards/Message";
 import NotificationCard from "@/components/Cards/NotificationCard";
 import useAddresses from "@/hooks/useAddresses";
 import { supabase } from "@/server/supabase-client";
@@ -76,96 +77,6 @@ export default function App({ Component, pageProps }: AppProps) {
       clearInterval(intervalIdNotification);
     };
   }, [changes]);
-
-  type MessageProps = {
-    data: any;
-  };
-
-  const Message = ({ data }: MessageProps) => {
-    const {
-      address,
-      amount,
-      assets,
-      minBalance,
-      pendingRewards,
-      rewardBase,
-      rewards,
-      accountStatus,
-      totalAppsOptedIn,
-      totalAssetsOptedIn,
-      totalCreatedApps,
-      totalCreatedAssets,
-    } = data;
-
-    return (
-      <ul>
-        <li>{address.slice(0, 6)}... have a change</li>
-        {amount !== 0 && (
-          <li className="text-sm ms-4">
-            Amount: {amount > 0 ? "+" : ""}
-            {amount}
-          </li>
-        )}
-        {assets !== 0 && (
-          <li className="text-sm ms-4">
-            Assets: {assets > 0 ? "+" : ""}
-            {assets}
-          </li>
-        )}
-        {minBalance !== 0 && (
-          <li className="text-sm ms-4">
-            Min balance: {minBalance > 0 ? "+" : ""}
-            {minBalance}
-          </li>
-        )}
-        {pendingRewards !== 0 && (
-          <li className="text-sm ms-4">
-            Pending Rewards: {pendingRewards > 0 ? "+" : ""}
-            {pendingRewards}
-          </li>
-        )}
-        {rewardBase !== 0 && (
-          <li className="text-sm ms-4">
-            Reward Base: {rewardBase > 0 ? "+" : ""}
-            {rewardBase}
-          </li>
-        )}
-        {rewards !== 0 && (
-          <li className="text-sm ms-4">
-            Rewards: {rewards > 0 ? "+" : ""}
-            {rewards}
-          </li>
-        )}
-        {!accountStatus[0] && (
-          <li className="text-sm ms-4">Account Status: {accountStatus[1]}</li>
-        )}{" "}
-        {totalAppsOptedIn !== 0 && (
-          <li className="text-sm ms-4">
-            Apps Opened: {totalAppsOptedIn > 0 ? "+" : ""}
-            {totalAppsOptedIn}
-          </li>
-        )}{" "}
-        {totalAssetsOptedIn !== 0 && (
-          <li className="text-sm ms-4">
-            Assets Opened: {totalAssetsOptedIn > 0 ? "+" : ""}
-            {totalAssetsOptedIn}
-          </li>
-        )}{" "}
-        {totalCreatedApps !== 0 && (
-          <li className="text-sm ms-4">
-            Created Apps: {totalCreatedApps > 0 ? "+" : ""}
-            {totalCreatedApps}
-          </li>
-        )}{" "}
-        {totalCreatedAssets !== 0 && (
-          <li className="text-sm ms-4">
-            Created Assets: {totalCreatedAssets > 0 ? "+" : ""}
-            {totalCreatedAssets}
-          </li>
-        )}
-      </ul>
-    );
-  };
 
   return (
     <main className="relative">
