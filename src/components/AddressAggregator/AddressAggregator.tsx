@@ -53,7 +53,11 @@ export default function AddressAggregator({
         refreshAddresses();
       }, 500);
     } catch (error) {
-      console.error(error);
+      setAddress(null);
+      setNewAddress(undefined);
+      setError(
+        "This address does not exist in the Algorand network. Please enter another one"
+      );
     }
   };
 
@@ -80,9 +84,10 @@ export default function AddressAggregator({
         } as NextApiResponse;
 
         await getAddressByAddress(req, res);
+
         setError(null);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -92,7 +97,13 @@ export default function AddressAggregator({
       fetchAddresses(newAddress);
     }
   }, [newAddress]);
-  console.log(error);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setError(null);
+    }, 3000);
+  }, [error]);
+
   return (
     <div className="flex  items-center">
       <div>
@@ -128,22 +139,17 @@ export default function AddressAggregator({
             </button>
           )}
         </div>
-
         {!isValid && address === null && (
           <p className="text-red-500 text-sm mt-1">
             Address not valid. Please enter a valid Algorand address.
           </p>
         )}
-        {address && (
+        {address && isValid && (
           <p className="text-red-500 text-sm mt-1">
             Address in the list. Enter other address
           </p>
         )}
-        {error && (
-          <p className="text-red-500 text-sm mt-1">
-            Error in the server. Try later
-          </p>
-        )}
+        {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       </div>
     </div>
   );
