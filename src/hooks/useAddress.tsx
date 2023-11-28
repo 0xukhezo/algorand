@@ -46,8 +46,8 @@ export default function useAddress({ addressToFetch }: useAddressProps) {
   };
 
   useEffect(() => {
-    fetchAddresses(addressToFetch);
-  }, []);
+    addressToFetch !== undefined && fetchAddresses(addressToFetch);
+  }, [addressToFetch]);
 
   return { address, error, isLoading };
 }

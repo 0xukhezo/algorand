@@ -16,10 +16,16 @@ export default function AddressDetails() {
 
   return (
     <>
-      {address ? (
-        <AccountDetails address={address} error={error} isLoading={isLoading} />
+      {isLoading ? (
+        <section className="flex justify-center mt-32">
+          <Loader />
+        </section>
+      ) : address ? (
+        <AccountDetails address={address} />
       ) : (
-        <Loader />
+        error && (
+          <div>Error fetching Account details. Please reload the page</div>
+        )
       )}
     </>
   );
