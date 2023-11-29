@@ -1,5 +1,6 @@
 // React
 import React, { ReactElement } from "react";
+// Components
 import Loader from "../Loader/Loader";
 
 type NotificationCardProps = {

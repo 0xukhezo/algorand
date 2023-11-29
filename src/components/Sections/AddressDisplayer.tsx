@@ -1,4 +1,4 @@
-//React
+// React
 import React from "react";
 // Types
 import { accountType } from "@/types/types";

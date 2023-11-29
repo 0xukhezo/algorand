@@ -2,9 +2,9 @@
 import React from "react";
 // Components
 import AddressAggregator from "@/components/AddressAggregator/AddressAggregator";
+import AddressDisplayer from "./AddressDisplayer";
 // Hooks
 import useAddresses from "../../hooks/useAddresses";
-import AddressDisplayer from "./AddressDisplayer";
 
 export default function Watcher() {
   const { addresses, error, isLoading, refreshAddresses } = useAddresses();

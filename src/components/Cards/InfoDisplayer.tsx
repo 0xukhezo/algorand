@@ -1,6 +1,7 @@
 // React
-import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
+// Next
+import { useRouter } from "next/router";
 
 type InfoDisplayerProps = {
   title: string;

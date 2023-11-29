@@ -3,7 +3,6 @@ import React from "react";
 // Components
 import Message from "../Cards/Message";
 import NotificationCard from "../Cards/NotificationCard";
-import Loader from "../Loader/Loader";
 
 type NotificationsProps = {
   color: string;
