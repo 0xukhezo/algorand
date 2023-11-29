@@ -31,27 +31,45 @@ export default function AccountDetails({ address }: AccountDetailsProps) {
     {
       title: "Balance",
       value: (
-        <div className="flex">
+        <div className="flex items-center">
           {formaNumber(address.amount / 1000000)}
-          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+          <Image
+            height={24}
+            width={24}
+            alt="Algorand Logo"
+            src={Token.src}
+            className="max-w-[24px] max-h-[24px]"
+          />
         </div>
       ),
     },
     {
       title: "Pending Rewards",
       value: (
-        <div className="flex">
+        <div className="flex items-center">
           {formaNumber(address.pendingRewards / 1000000)}
-          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+          <Image
+            height={24}
+            width={24}
+            alt="Algorand Logo"
+            src={Token.src}
+            className="max-w-[24px] max-h-[24px]"
+          />
         </div>
       ),
     },
     {
       title: "Balance Without Pending Rewards",
       value: (
-        <div className="flex">
+        <div className="flex items-center">
           {formaNumber(address.amountWithoutPendingRewards / 1000000)}{" "}
-          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+          <Image
+            height={24}
+            width={24}
+            alt="Algorand Logo"
+            src={Token.src}
+            className="max-w-[24px] max-h-[24px]"
+          />
         </div>
       ),
     },
@@ -60,7 +78,13 @@ export default function AccountDetails({ address }: AccountDetailsProps) {
       value: (
         <div className="flex">
           {formaNumber(address.minBalance / 1000000)}{" "}
-          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+          <Image
+            height={24}
+            width={24}
+            alt="Algorand Logo"
+            src={Token.src}
+            className="max-w-[24px] max-h-[24px]"
+          />
         </div>
       ),
     },

@@ -25,7 +25,13 @@ export default function AddressCard({ addressInfo }: AddressCardProps) {
         </div>
         <div className="font-bold flex">
           {formaNumber(addressInfo.amount / 1000000)}
-          <Image height={24} width={24} alt="Algorand Logo" src={Token.src} />
+          <Image
+            height={24}
+            width={24}
+            alt="Algorand Logo"
+            src={Token.src}
+            className="max-w-[24px] max-h-[24px]"
+          />
         </div>
       </main>{" "}
     </Link>
