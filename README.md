@@ -2,6 +2,10 @@
 
 Algorand Watcher is a simple yet powerful tool designed to monitor Algorand account addresses and provide notifications when their state changes. This project includes a REST API to manage the watched accounts and obtain their current states.
 
+## Web
+
+https://algorand-pi.vercel.app/
+
 ## Features
 
 1. **Accepting an Algorand Address:**
